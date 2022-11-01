@@ -33,7 +33,7 @@
 			</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link text-white active bg-gradient-primary ">
+			<a class="nav-link text-white active bg-gradient-primary " href="{{ URL('user') }}">
 				<div class="text-white text-center me-2 d-flex align-items-center
                 justify-content-center">
 					<i class="material-icons opacity-10">assignment</i>
@@ -61,9 +61,9 @@
 
 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
 	<li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-	<li class="breadcrumb-item text-sm text-dark active" aria-current="page">View Users</li>
+	<li class="breadcrumb-item text-sm text-dark active" aria-current="page">Edit User</li>
 </ol>
-<h6 class="font-weight-bolder mb-0">View Users</h6>
+<h6 class="font-weight-bolder mb-0">Edit User</h6>
 
 @stop
 
@@ -71,36 +71,32 @@
 
 @section('pageContent')
 
-<div style="margin-right: 50px;margin-left: 40px;margin-top: 10px;">
+<div style="margin-right: 725px;margin-left: 40px;margin-top: 10px;margin-bottom: 140px;">
 	<div class="row">
 		<div class="col-12">
-			<table class="table table-striped">
-				<thead class="thead-dark">
-					<th scope="col">Name</th>
-					<th scope="col">Email</th>
-					<th scope="col">Birth Date</th>
-					<th scope="col">Edit</th>
-					<th scope="col">Delete</th>
-				</thead>
-
-				<tbody>
-					@foreach ($users as $user)
-					<tr>
-						<td>{{ $user->name }}</td>
-						<td>{{ $user->email }}</td>
-						<td>{{ $user->birth_date }}</td>
-						<td><a class="btn btn-link text-dark px-3 mb-0" href="{{ URL('user/edit/' . $user->id) }}"><i class="material-icons text-sm me-2">edit</i>Edit</a></td>
-						<td>
-							<form method="POST" action="{{ URL('user/delete/' . $user->id) }}">
-								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-								<button type="sumbit" class="btn btn-danger">Delete</button>
-							</form>
-						</td>
-					</tr>
-					@endforeach
-				</tbody>
-			</table>
+			<form action="{{ URL('user/update/' . $user->id) }}" method="POST">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<input type="hidden" name="_method" value="PUT">
+				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
+					<div class="input-group input-group-outline">
+						<label for="name">User Name</label>
+						<input type="text" name="name" id="name" class="form-control" value="{{ $user->name }}">
+					</div>
+				</div><br>
+				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
+					<div class="input-group input-group-outline">
+						<label for="birth_date">Email</label>
+						<input type="email" name="email" id="email" class="form-control" value="{{ $user->email }}">
+					</div>
+				</div><br>
+				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
+					<div class="input-group input-group-outline">
+						<label for="birth_date">User Birth Date</label>
+						<input type="date" name="birth_date" id="birth_date" class="form-control" value="{{ $user->birth_date }}">
+					</div>
+				</div><br>
+				<button type="submit" class="btn btn-primary">Save</button>
+			</form>
 		</div>
 	</div>
 </div>

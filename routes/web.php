@@ -14,10 +14,6 @@ Route::get('profile', function () {
     return view('page/profile');
 });
 
-Route::get('edit', function () {
-    return view('page/user/edit');
-});
-
 Route::get('user/create', 'User\UserController@create');    // GET
 Route::post('user/store', 'User\UserController@store');    // POST
 Route::get('user', 'User\UserController@index');    // GET

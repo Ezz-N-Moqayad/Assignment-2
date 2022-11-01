@@ -21,10 +21,10 @@ class UserController extends Controller
         $birth_date = $request['birth_date'];
         $password = $request['password'];
         if ($name == null || $email == null || $birth_date == null || $password == null) {
-            return view('page/user/create');
+            return redirect('user/create');
         } else {
             $query = "INSERT INTO user (name, email, birth_date, password) VALUES ('$name', '$email', '$birth_date', '$password')";
-            $result = DB::statement($query);
+            DB::statement($query);
 
             return redirect('user');
         }
@@ -52,13 +52,12 @@ class UserController extends Controller
         $name = $request['name'];
         $email = $request['email'];
         $birth_date = $request['birth_date'];
-        $password = $request['password'];
 
-        if ($name == null || $email == null || $birth_date == null || $password == null) {
-            // return redirect('user/edit/{$id}');
-            return redirect('user');
+        if ($name == null || $email == null || $birth_date == null) {
+            return redirect('user/edit/' . $id);
+            // return redirect('user');
         } else {
-            $query = "UPDATE user SET name = '$name', email = '$email', birth_date = '$birth_date', password = '$password' WHERE id = $id";
+            $query = "UPDATE user SET name = '$name', email = '$email', birth_date = '$birth_date' WHERE id = $id";
             DB::statement($query);
 
             return redirect('user');
