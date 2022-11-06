@@ -23,8 +23,10 @@ class UserController extends Controller
         if ($name == null || $email == null || $birth_date == null || $password == null) {
             return redirect('user/create');
         } else {
-            $query = "INSERT INTO user (name, email, birth_date, password) VALUES ('$name', '$email', '$birth_date', '$password')";
-            DB::statement($query);
+            DB::table('user')->insert([
+                'name' => $name, 'email' => $email,
+                'birth_date' => $birth_date, 'password' => $password
+            ]);
 
             return redirect('user');
         }
@@ -32,17 +34,16 @@ class UserController extends Controller
 
     public function index()
     {
-        $query = "SELECT * FROM user";
-        $users = DB::select($query);
+        $users = DB::table('user')
+            ->select('id', 'name', 'email', 'birth_date')
+            ->get();
 
-        return view('page/user/view')->with('users', $users);
+        return view('page.user.view')->with('users', $users);
     }
 
     public function edit($id)
     {
-        $query = "SELECT * FROM user where id = $id limit 1";
-        $users = DB::select($query);
-        $user = $users[0];
+        $user = DB::table('user')->where('id', $id)->first();
 
         return view('page/user/edit')->with('user', $user);
     }
@@ -55,10 +56,11 @@ class UserController extends Controller
 
         if ($name == null || $email == null || $birth_date == null) {
             return redirect('user/edit/' . $id);
-            // return redirect('user');
         } else {
-            $query = "UPDATE user SET name = '$name', email = '$email', birth_date = '$birth_date' WHERE id = $id";
-            DB::statement($query);
+            DB::table('user')->where('id', $id)->update([
+                'name' => $name, 'email' => $email,
+                'birth_date' => $birth_date
+            ]);
 
             return redirect('user');
         }
@@ -66,8 +68,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $query = "DELETE FROM user where id = $id";
-        DB::statement($query);
+        DB::table('user')->where('id', $id)->delete();
 
         return redirect()->back();
     }
