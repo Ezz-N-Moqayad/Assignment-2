@@ -100,7 +100,10 @@
 					</tr>
 					@endforeach
 				</tbody>
-			</table>
+			</table><br>
+			<div style="display: flex; justify-content: center;">
+				{{ $users->links() }}
+			</div>
 		</div>
 	</div>
 </div>

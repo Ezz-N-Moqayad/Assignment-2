@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Users;
 
 class UserController extends Controller
 {
@@ -22,28 +23,32 @@ class UserController extends Controller
         $password = $request['password'];
         if ($name == null || $email == null || $birth_date == null || $password == null) {
             return redirect('user/create');
-        } else {
-            DB::table('user')->insert([
-                'name' => $name, 'email' => $email,
-                'birth_date' => $birth_date, 'password' => $password
-            ]);
-
-            return redirect('user');
         }
+
+        $user = new Users();
+        $user->name = $name;
+        $user->email = $email;
+        $user->birth_date = $birth_date;
+        $user->password = $password;
+
+        $user->save();
+
+        return redirect('user');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = DB::table('user')
-            ->select('id', 'name', 'email', 'birth_date')
-            ->get();
+        $paginate = 4;
+
+        $users = Users::select('id', 'name', 'email', 'birth_date')
+            ->orderBy('user.name')->paginate($paginate);
 
         return view('page.user.view')->with('users', $users);
     }
 
     public function edit($id)
     {
-        $user = DB::table('user')->where('id', $id)->first();
+        $user = Users::where('id', $id)->first();
 
         return view('page/user/edit')->with('user', $user);
     }
@@ -56,19 +61,21 @@ class UserController extends Controller
 
         if ($name == null || $email == null || $birth_date == null) {
             return redirect('user/edit/' . $id);
-        } else {
-            DB::table('user')->where('id', $id)->update([
-                'name' => $name, 'email' => $email,
-                'birth_date' => $birth_date
-            ]);
-
-            return redirect('user');
         }
+
+        $user = Users::where('id', $id)->first();
+        $user->name = $name;
+        $user->email = $email;
+        $user->birth_date = $birth_date;
+
+        $user->save();
+
+        return redirect('user');
     }
 
     public function destroy($id)
     {
-        DB::table('user')->where('id', $id)->delete();
+        Users::where('id', $id)->delete();
 
         return redirect()->back();
     }
