@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Course;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use App\Users;
+use App\Course;
 
-class UserController extends Controller
+class CourseController extends Controller
 {
 
     public function create()
@@ -25,7 +24,7 @@ class UserController extends Controller
             return redirect('user/create');
         }
 
-        $user = new Users();
+        $user = new Course();
         $user->name = $name;
         $user->email = $email;
         $user->birth_date = $birth_date;
@@ -40,7 +39,7 @@ class UserController extends Controller
     {
         $paginate = 4;
 
-        $users = Users::select('id', 'name', 'email', 'birth_date')
+        $users = Course::select('id', 'name', 'email', 'birth_date')
             ->orderBy('user.name')->paginate($paginate);
 
         return view('page.user.view')->with('users', $users);
@@ -48,7 +47,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = Users::where('id', $id)->first();
+        $user = Course::where('id', $id)->first();
 
         return view('page/user/edit')->with('user', $user);
     }
@@ -63,7 +62,7 @@ class UserController extends Controller
             return redirect('user/edit/' . $id);
         }
 
-        $user = Users::where('id', $id)->first();
+        $user = Course::where('id', $id)->first();
         $user->name = $name;
         $user->email = $email;
         $user->birth_date = $birth_date;
@@ -75,7 +74,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        Users::where('id', $id)->delete();
+        Course::where('id', $id)->delete();
 
         return redirect()->back();
     }
