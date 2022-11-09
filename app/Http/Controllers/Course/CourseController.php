@@ -5,71 +5,78 @@ namespace App\Http\Controllers\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Course;
+use App\Teacher;
 
 class CourseController extends Controller
 {
 
     public function create()
     {
-        return view('page/user/create');
+        $teachers = Teacher::select('id', 'name')->get();
+
+        return view('page/course/create')->with('teachers', $teachers);
     }
 
     public function store(Request $request)
     {
         $name = $request['name'];
-        $email = $request['email'];
-        $birth_date = $request['birth_date'];
-        $password = $request['password'];
-        if ($name == null || $email == null || $birth_date == null || $password == null) {
-            return redirect('user/create');
+        $course_number = $request['course_number'];
+        $credit = $request['credit'];
+        $teacher_id = $request['teacher_id'];
+        if ($name == null || $course_number == null || $credit == null || $teacher_id == '-1') {
+            return redirect('course/create');
         }
 
-        $user = new Course();
-        $user->name = $name;
-        $user->email = $email;
-        $user->birth_date = $birth_date;
-        $user->password = $password;
+        $course = new Course();
+        $course->name = $name;
+        $course->course_number = $course_number;
+        $course->credit = $credit;
+        $course->teacher_id = $teacher_id;
 
-        $user->save();
+        $course->save();
 
-        return redirect('user');
+        return redirect('course');
     }
 
     public function index(Request $request)
     {
         $paginate = 4;
 
-        $users = Course::select('id', 'name', 'email', 'birth_date')
-            ->orderBy('user.name')->paginate($paginate);
+        $courses = Course::select('id', 'name', 'course_number', 'credit', 'teacher_id')
+            ->orderBy('courses.name')->paginate($paginate);
 
-        return view('page.user.view')->with('users', $users);
+        return view('page/course/view')->with('courses', $courses);
     }
 
     public function edit($id)
     {
-        $user = Course::where('id', $id)->first();
+        $course = Course::where('id', $id)->first();
 
-        return view('page/user/edit')->with('user', $user);
+        $teachers = Teacher::select('id', 'name')->get();
+
+        return view('page/course/edit')->with('course', $course)->with('teachers', $teachers);
     }
 
     public function update(Request $request, $id)
     {
         $name = $request['name'];
-        $email = $request['email'];
-        $birth_date = $request['birth_date'];
+        $course_number = $request['course_number'];
+        $credit = $request['credit'];
+        $teacher_id = $request['teacher_id'];
 
-        if ($name == null || $email == null || $birth_date == null) {
-            return redirect('user/edit/' . $id);
+        if ($name == null || $course_number == null || $credit == null || $teacher_id == '-1') {
+            return redirect('course/edit/' . $id);
         }
 
-        $user = Course::where('id', $id)->first();
-        $user->name = $name;
-        $user->email = $email;
-        $user->birth_date = $birth_date;
+        $course = Course::where('id', $id)->first();
+        $course->name = $name;
+        $course->course_number = $course_number;
+        $course->credit = $credit;
+        $course->teacher_id = $teacher_id;
 
-        $user->save();
+        $course->save();
 
-        return redirect('user');
+        return redirect('course');
     }
 
     public function destroy($id)

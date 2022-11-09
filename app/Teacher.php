@@ -13,7 +13,7 @@ class Teacher extends Model
     //     email TEXT NOT NULL,
     //     phone TEXT NOT NULL,
     //     birth_date DATE NOT NULL,
-    //     password TEXT NOT NULL,
+    //     PASSWORD TEXT NOT NULL,
     //     created_at DATETIME,
     //     updated_at DATETIME,
     //     deleted_at DATETIME

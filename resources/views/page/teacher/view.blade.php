@@ -36,18 +36,9 @@
 			<a class="nav-link text-white active bg-gradient-primary ">
 				<div class="text-white text-center me-2 d-flex align-items-center
                 justify-content-center">
-					<i class="material-icons opacity-10">group</i>
-				</div>
-				<span class="nav-link-text ms-1">View Teachers</span>
-			</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link text-white " href="{{ URL('student') }}">
-				<div class="text-white text-center me-2 d-flex align-items-center
-                justify-content-center">
 					<i class="material-icons opacity-10">assignment_ind</i>
 				</div>
-				<span class="nav-link-text ms-1">View Students</span>
+				<span class="nav-link-text ms-1">View Teachers</span>
 			</a>
 		</li>
 		<li class="nav-item">
@@ -76,7 +67,7 @@
 	<h6 class="font-weight-bolder mb-0">View Teachers</h6>
 </nav>
 
-<div style="margin-left: 325px;">
+<div style="margin-left: 250px;">
 	<div class="mx-3">
 		<a class="btn bg-gradient-primary mt-4 w-100" href="{{ URL('teacher/create') }}" type="button">Create Teacher</a>
 	</div>
@@ -129,5 +120,6 @@
 		</div>
 	</div>
 </div>
+
 
 @stop

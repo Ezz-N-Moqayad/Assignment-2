@@ -14,16 +14,6 @@ Route::get('profile', function () {
     return view('page/profile');
 });
 
-// Student
-
-Route::get('student/create', 'Student\StudentController@create');
-Route::post('student/store', 'Student\StudentController@store');
-Route::get('student', 'Student\StudentController@index');
-Route::get('student/edit/{id}', 'Student\StudentController@edit');
-Route::put('student/update/{id}', 'Student\StudentController@update');
-Route::post('student/delete/{id}', 'Student\StudentController@destroy');
-
-
 // Teacher
 
 Route::get('teacher/create', 'Teacher\TeacherController@create');

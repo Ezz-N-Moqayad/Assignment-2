@@ -36,18 +36,9 @@
 			<a class="nav-link text-white " href="{{ URL('teacher') }}">
 				<div class="text-white text-center me-2 d-flex align-items-center
                 justify-content-center">
-					<i class="material-icons opacity-10">group</i>
-				</div>
-				<span class="nav-link-text ms-1">View Teachers</span>
-			</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link text-white " href="{{ URL('student') }}">
-				<div class="text-white text-center me-2 d-flex align-items-center
-                justify-content-center">
 					<i class="material-icons opacity-10">assignment_ind</i>
 				</div>
-				<span class="nav-link-text ms-1">View Students</span>
+				<span class="nav-link-text ms-1">View Teachers</span>
 			</a>
 		</li>
 		<li class="nav-item">
@@ -82,7 +73,7 @@
 
 @section('pageContent')
 
-<div style="margin-right: 725px;margin-left: 40px;margin-top: 10px;margin-bottom: 140px;">
+<div style="margin-right: 725px;margin-left: 40px;margin-top: 10px;margin-bottom: 80px;">
 	<div class="row">
 		<div class="col-12">
 			<form action="{{ URL('teacher/store') }}" method="POST">
