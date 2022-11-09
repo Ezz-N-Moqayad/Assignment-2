@@ -6,6 +6,51 @@
 <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
 	<ul class="navbar-nav">
 		<li class="nav-item">
+			<a class="nav-link text-white active bg-gradient-primary ">
+				<div class="text-white text-center me-2 d-flex align-items-center
+                justify-content-center">
+					<i class="material-icons opacity-10">assignment_ind</i>
+				</div>
+				<span class="nav-link-text ms-1">View Teachers</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link text-white " href="{{ URL('student') }}">
+				<div class="text-white text-center me-2 d-flex align-items-center
+                justify-content-center">
+					<i class="material-icons opacity-10">group</i>
+				</div>
+				<span class="nav-link-text ms-1">View Students</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link text-white " href="{{ URL('course') }}">
+				<div class="text-white text-center me-2 d-flex align-items-center
+                justify-content-center">
+					<i class="material-icons opacity-10">assignment</i>
+				</div>
+				<span class="nav-link-text ms-1">View Courses</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link text-white " href="{{ URL('teacher/info') }}">
+				<div class="text-white text-center me-2 d-flex align-items-center
+                justify-content-center">
+					<i class="material-icons opacity-10">business_center</i>
+				</div>
+				<span class="nav-link-text ms-1">Teachers Information</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link text-white " href="{{ URL('course/info') }}">
+				<div class="text-white text-center me-2 d-flex align-items-center
+                justify-content-center">
+					<i class="material-icons opacity-10">toc</i>
+				</div>
+				<span class="nav-link-text ms-1">Courses Information</span>
+			</a>
+		</li>
+		<li class="nav-item">
 			<a class="nav-link text-white " href="{{ URL('') }}">
 				<div class="text-white text-center me-2 d-flex align-items-center
                 justify-content-center">
@@ -30,24 +75,6 @@
 					<i class="material-icons opacity-10">person</i>
 				</div>
 				<span class="nav-link-text ms-1">Profile</span>
-			</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link text-white active bg-gradient-primary ">
-				<div class="text-white text-center me-2 d-flex align-items-center
-                justify-content-center">
-					<i class="material-icons opacity-10">assignment_ind</i>
-				</div>
-				<span class="nav-link-text ms-1">View Teachers</span>
-			</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link text-white " href="{{ URL('course') }}">
-				<div class="text-white text-center me-2 d-flex align-items-center
-                justify-content-center">
-					<i class="material-icons opacity-10">assignment</i>
-				</div>
-				<span class="nav-link-text ms-1">View Courses</span>
 			</a>
 		</li>
 	</ul>
@@ -87,7 +114,6 @@
 					<th scope="col">Name</th>
 					<th scope="col">Email</th>
 					<th scope="col">Birth Date</th>
-					<th scope="col">Info</th>
 					<th scope="col">Edit</th>
 					<th scope="col">Delete</th>
 				</thead>
@@ -98,11 +124,6 @@
 						<td>{{ $teacher->teacher_name }}</td>
 						<td>{{ $teacher->teacher_email }}</td>
 						<td>{{ $teacher->teacher_birth_date }}</td>
-						<td>
-							<a class="btn btn-link text-dark px-3 mb-0" href="{{ URL('teacher/info') }}">
-								<i class="material-icons text-sm me-2">info</i>Info
-							</a>
-						</td>
 						<td>
 							<a class="btn btn-link text-dark px-3 mb-0" href="{{ URL('teacher/edit/' . $teacher->id) }}">
 								<i class="material-icons text-sm me-2">edit</i>Edit

@@ -38,28 +38,20 @@ class TeacherController extends Controller
         return redirect('teacher');
     }
 
-    public function indexInfo($id)
-    {
-
-        $teachers = Teacher::join('courses', 'teachers.id', 'courses.teacher_id')
-            ->get();
-
-        return view('page/teacher/info')->with('teachers', $teachers);
-    }
-
     public function index()
     {
-        // $teachers = Teacher::with('course')
-        //     ->select('*')
-        //     ->get();
-
-        // dd($teachers->toArray());
-
         $teachers = Teacher::select('id', 'teacher_name', 'teacher_email', 'teacher_birth_date')
-            ->orderBy('teachers.teacher_name')
-            ->paginate(4);
+            ->orderBy('teachers.teacher_name')->paginate(4);
 
         return view('page/teacher/view')->with('teachers', $teachers);
+    }
+
+    public function indexInfo()
+    {
+        $teachers = Teacher::join('courses', 'teachers.id', 'courses.teacher_id')
+            ->select('*')->paginate(10);
+
+        return view('page/teacher/info')->with('teachers', $teachers);
     }
 
     public function edit($id)

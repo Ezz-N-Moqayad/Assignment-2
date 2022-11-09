@@ -38,17 +38,19 @@ class CourseController extends Controller
         return redirect('course');
     }
 
-    public function index(Request $request)
-    {      
-        // $courses = Course::with('teacher')
-        //     ->select('*')
-        //     ->get();
-
-        // dd($courses->toArray());
-
+    public function index()
+    {
         $courses = Course::select('id', 'course_name', 'course_number', 'course_credit', 'teacher_id')->paginate(4);
 
         return view('page/course/view')->with('courses', $courses);
+    }
+
+    public function indexInfo()
+    {
+        $courses = Course::join('students', 'courses.id', 'students.course_id')
+            ->select('*')->paginate(10);
+
+        return view('page/course/info')->with('courses', $courses);
     }
 
     public function edit($id)

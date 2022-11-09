@@ -10,11 +10,6 @@ class Course extends Model
 
     use SoftDeletes;
 
-    public function teacher()
-    {
-        return $this->belongsTo('App\Teacher');
-    }
-
     // CREATE TABLE courses(
     //     id INT PRIMARY KEY AUTO_INCREMENT,
     //     course_name TEXT NOT NULL,
@@ -24,7 +19,7 @@ class Course extends Model
     //     created_at DATETIME,
     //     updated_at DATETIME,
     //     deleted_at DATETIME,
-    //     FOREIGN KEY(teacher_id) REFERENCES teachers(teacher_id)
+    //     FOREIGN KEY(teacher_id) REFERENCES teachers(id)
     // );
 
 }

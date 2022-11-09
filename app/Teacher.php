@@ -9,11 +9,6 @@ class Teacher extends Model
 {
 
     use SoftDeletes;
-
-    public function course()
-    {
-        return $this->hasMany('App\Course');
-    }
     
     // CREATE TABLE teachers(
     //     id INT PRIMARY KEY AUTO_INCREMENT,
