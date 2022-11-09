@@ -12,7 +12,7 @@ class CourseController extends Controller
 
     public function create()
     {
-        $teachers = Teacher::select('id', 'name')->get();
+        $teachers = Teacher::select('id', 'teacher_name')->get();
 
         return view('page/course/create')->with('teachers', $teachers);
     }
@@ -28,9 +28,9 @@ class CourseController extends Controller
         }
 
         $course = new Course();
-        $course->name = $name;
+        $course->course_name = $name;
         $course->course_number = $course_number;
-        $course->credit = $credit;
+        $course->course_credit = $credit;
         $course->teacher_id = $teacher_id;
 
         $course->save();
@@ -39,11 +39,14 @@ class CourseController extends Controller
     }
 
     public function index(Request $request)
-    {
-        $paginate = 4;
+    {      
+        // $courses = Course::with('teacher')
+        //     ->select('*')
+        //     ->get();
 
-        $courses = Course::select('id', 'name', 'course_number', 'credit', 'teacher_id')
-            ->orderBy('courses.name')->paginate($paginate);
+        // dd($courses->toArray());
+
+        $courses = Course::select('id', 'course_name', 'course_number', 'course_credit', 'teacher_id')->paginate(4);
 
         return view('page/course/view')->with('courses', $courses);
     }
@@ -52,7 +55,7 @@ class CourseController extends Controller
     {
         $course = Course::where('id', $id)->first();
 
-        $teachers = Teacher::select('id', 'name')->get();
+        $teachers = Teacher::select('id', 'teacher_name')->get();
 
         return view('page/course/edit')->with('course', $course)->with('teachers', $teachers);
     }
@@ -69,9 +72,9 @@ class CourseController extends Controller
         }
 
         $course = Course::where('id', $id)->first();
-        $course->name = $name;
+        $course->course_name = $name;
         $course->course_number = $course_number;
-        $course->credit = $credit;
+        $course->course_credit = $credit;
         $course->teacher_id = $teacher_id;
 
         $course->save();

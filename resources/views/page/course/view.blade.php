@@ -96,8 +96,8 @@
 					@foreach ($courses as $course)
 					<tr>
 						<td>{{ $course->course_number }}</td>
-						<td>{{ $course->name }}</td>
-						<td>{{ $course->credit }}</td>
+						<td>{{ $course->course_name }}</td>
+						<td>{{ $course->course_credit }}</td>
 						<td>{{ $course->teacher_id }}</td>
 						<td>
 							<a class="btn btn-link text-dark px-3 mb-0" href="{{ URL('course/edit/' . $course->id) }}">

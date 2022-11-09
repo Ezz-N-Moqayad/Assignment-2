@@ -18,35 +18,46 @@ class TeacherController extends Controller
     {
         $name = $request['name'];
         $email = $request['email'];
-        $phone = $request['phone'];
         $birth_date = $request['birth_date'];
         $password = $request['password'];
         if (
-            $name == null || $email == null || $phone == null
-            || $birth_date == null || $password == null
+            $name == null || $email == null ||
+            $birth_date == null || $password == null
         ) {
             return redirect('teacher/create');
         }
 
         $teacher = new Teacher();
-        $teacher->name = $name;
-        $teacher->email = $email;
-        $teacher->phone = $phone;
-        $teacher->birth_date = $birth_date;
-        $teacher->password = $password;
+        $teacher->teacher_name = $name;
+        $teacher->teacher_email = $email;
+        $teacher->teacher_birth_date = $birth_date;
+        $teacher->teacher_password = $password;
 
         $teacher->save();
 
         return redirect('teacher');
     }
 
+    public function indexInfo($id)
+    {
+
+        $teachers = Teacher::join('courses', 'teachers.id', 'courses.teacher_id')
+            ->get();
+
+        return view('page/teacher/info')->with('teachers', $teachers);
+    }
+
     public function index()
     {
-        $paginate = 4;
+        // $teachers = Teacher::with('course')
+        //     ->select('*')
+        //     ->get();
 
-        $teachers = Teacher::select('id', 'name', 'email', 'phone', 'birth_date')
-            ->orderBy('teachers.name')
-            ->paginate($paginate);
+        // dd($teachers->toArray());
+
+        $teachers = Teacher::select('id', 'teacher_name', 'teacher_email', 'teacher_birth_date')
+            ->orderBy('teachers.teacher_name')
+            ->paginate(4);
 
         return view('page/teacher/view')->with('teachers', $teachers);
     }
@@ -62,7 +73,6 @@ class TeacherController extends Controller
     {
         $name = $request['name'];
         $email = $request['email'];
-        $phone = $request['phone'];
         $birth_date = $request['birth_date'];
 
         if ($name == null || $email == null || $birth_date == null) {
@@ -70,10 +80,9 @@ class TeacherController extends Controller
         }
 
         $teacher = Teacher::where('id', $id)->first();
-        $teacher->name = $name;
-        $teacher->email = $email;
-        $teacher->phone = $phone;
-        $teacher->birth_date = $birth_date;
+        $teacher->teacher_name = $name;
+        $teacher->teacher_email = $email;
+        $teacher->teacher_birth_date = $birth_date;
 
         $teacher->save();
 

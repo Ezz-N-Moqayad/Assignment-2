@@ -103,7 +103,7 @@
 							<option value="-1">Choose The Teacher</option>
 
 							@foreach ($teachers as $teacher)
-							<option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+							<option value="{{ $teacher->id }}">{{ $teacher->teacher_name }}</option>
 							@endforeach
 
 						</select>

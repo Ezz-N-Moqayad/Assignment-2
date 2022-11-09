@@ -86,8 +86,8 @@
 				<thead class="thead-dark">
 					<th scope="col">Name</th>
 					<th scope="col">Email</th>
-					<th scope="col">Phone</th>
 					<th scope="col">Birth Date</th>
+					<th scope="col">Info</th>
 					<th scope="col">Edit</th>
 					<th scope="col">Delete</th>
 				</thead>
@@ -95,11 +95,16 @@
 				<tbody>
 					@foreach ($teachers as $teacher)
 					<tr>
-						<td>{{ $teacher->name }}</td>
-						<td>{{ $teacher->email }}</td>
-						<td>{{ $teacher->phone }}</td>
-						<td>{{ $teacher->birth_date }}</td>
-						<td><a class="btn btn-link text-dark px-3 mb-0" href="{{ URL('teacher/edit/' . $teacher->id) }}">
+						<td>{{ $teacher->teacher_name }}</td>
+						<td>{{ $teacher->teacher_email }}</td>
+						<td>{{ $teacher->teacher_birth_date }}</td>
+						<td>
+							<a class="btn btn-link text-dark px-3 mb-0" href="{{ URL('teacher/info') }}">
+								<i class="material-icons text-sm me-2">info</i>Info
+							</a>
+						</td>
+						<td>
+							<a class="btn btn-link text-dark px-3 mb-0" href="{{ URL('teacher/edit/' . $teacher->id) }}">
 								<i class="material-icons text-sm me-2">edit</i>Edit
 							</a>
 						</td>
@@ -120,6 +125,5 @@
 		</div>
 	</div>
 </div>
-
 
 @stop

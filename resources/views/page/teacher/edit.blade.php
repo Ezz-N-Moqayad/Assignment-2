@@ -3,6 +3,7 @@
 
 <head>
 	<title>Material Dashboard</title>
+	@include('includes.pagestyle')
 </head>
 
 <body>
@@ -14,31 +15,26 @@
 				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
 					<div class="input-group input-group-outline">
 						<label for="name">Teacher Name</label>
-						<input type="text" name="name" id="name" class="form-control" value="{{ $teacher->name }}">
+						<input type="text" name="name" id="name" class="form-control" value="{{ $teacher->teacher_name }}">
 					</div>
 				</div><br>
 				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
 					<div class="input-group input-group-outline">
 						<label for="email">Email</label>
-						<input type="email" name="email" id="email" class="form-control" value="{{ $teacher->email }}">
-					</div>
-				</div><br>
-				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
-					<div class="input-group input-group-outline">
-						<label for="phone">Phone</label>
-						<input type="tel" name="phone" id="phone" class="form-control" value="{{ $teacher->phone }}">
+						<input type="email" name="email" id="email" class="form-control" value="{{ $teacher->teacher_email }}">
 					</div>
 				</div><br>
 				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
 					<div class="input-group input-group-outline">
 						<label for="birth_date">Birth Date</label>
-						<input type="date" name="birth_date" id="birth_date" class="form-control" value="{{ $teacher->birth_date }}">
+						<input type="date" name="birth_date" id="birth_date" class="form-control" value="{{ $teacher->teacher_birth_date }}">
 					</div>
 				</div><br>
 				<button type="submit" class="btn btn-primary">Save</button>
 			</form>
 		</div>
 	</div>
+	@include('includes.pageJs')
 </body>
 
 </html>

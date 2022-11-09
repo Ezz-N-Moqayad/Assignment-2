@@ -22,6 +22,7 @@ Route::get('teacher', 'Teacher\TeacherController@index');
 Route::get('teacher/edit/{id}', 'Teacher\TeacherController@edit');
 Route::put('teacher/update/{id}', 'Teacher\TeacherController@update');
 Route::post('teacher/delete/{id}', 'Teacher\TeacherController@destroy');
+Route::get('teacher/info', 'Teacher\TeacherController@indexInfo');
 
 
 // Course

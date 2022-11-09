@@ -14,7 +14,7 @@
 				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
 					<div class="input-group input-group-outline">
 						<label class="form-label" for="name">Course Name</label>
-						<input type="text" name="name" id="name" class="form-control" value="{{ $course->name }}">
+						<input type="text" name="name" id="name" class="form-control" value="{{ $course->course_name }}">
 					</div>
 				</div><br>
 				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -26,7 +26,7 @@
 				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
 					<div class="input-group input-group-outline">
 						<label class="form-label" for="credit">Credit</label>
-						<input type="number" name="credit" id="credit" class="form-control" value="{{ $course->credit }}">
+						<input type="number" name="credit" id="credit" class="form-control" value="{{ $course->course_credit }}">
 					</div>
 				</div><br>
 				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -44,7 +44,7 @@
 
 							@endphp
 
-							<option value="{{ $id }}" @if ($id==$teacher_id) selected @endif>{{ $teacher->name }}</option>
+							<option value="{{ $id }}" @if ($id==$teacher_id) selected @endif>{{ $teacher->teacher_name }}</option>
 							@endforeach
 
 						</select>

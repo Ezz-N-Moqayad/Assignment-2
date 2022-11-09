@@ -92,12 +92,6 @@
 				</div><br>
 				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
 					<div class="input-group input-group-outline">
-						<label class="form-label" for="phone">Phone</label>
-						<input type="tel" name="phone" id="phone" class="form-control">
-					</div>
-				</div><br>
-				<div class="ms-md-auto pe-md-3 d-flex align-items-center">
-					<div class="input-group input-group-outline">
 						<label class="form-label" for="birth_date">Birth Date</label>
 						<input type="date" name="birth_date" id="birth_date" class="form-control" value="2002-01-15">
 					</div>
