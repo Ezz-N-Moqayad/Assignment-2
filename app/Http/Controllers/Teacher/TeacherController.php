@@ -35,7 +35,7 @@ class TeacherController extends Controller
 
         $teacher->save();
 
-        return redirect('teacher');
+        return redirect('');
     }
 
     public function index()
@@ -78,7 +78,7 @@ class TeacherController extends Controller
 
         $teacher->save();
 
-        return redirect('teacher');
+        return redirect('');
     }
 
     public function destroy($id)

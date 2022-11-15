@@ -6,7 +6,7 @@
 <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
 	<ul class="navbar-nav">
 		<li class="nav-item">
-			<a class="nav-link text-white " href="{{ URL('teacher') }}">
+			<a class="nav-link text-white " href="{{ URL('') }}">
 				<div class="text-white text-center me-2 d-flex align-items-center
                 justify-content-center">
 					<i class="material-icons opacity-10">assignment_ind</i>
@@ -50,33 +50,6 @@
 				<span class="nav-link-text ms-1">Courses Information</span>
 			</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link text-white " href="{{ URL('') }}">
-				<div class="text-white text-center me-2 d-flex align-items-center
-                justify-content-center">
-					<i class="material-icons opacity-10">dashboard</i>
-				</div>
-				<span class="nav-link-text ms-1">Dashboard</span>
-			</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link text-white " href="{{ URL('billing') }}">
-				<div class="text-white text-center me-2 d-flex align-items-center
-                justify-content-center">
-					<i class="material-icons opacity-10">receipt_long</i>
-				</div>
-				<span class="nav-link-text ms-1">Billing</span>
-			</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link text-white " href="{{ URL('profile') }}">
-				<div class="text-white text-center me-2 d-flex align-items-center
-                justify-content-center">
-					<i class="material-icons opacity-10">person</i>
-				</div>
-				<span class="nav-link-text ms-1">Profile</span>
-			</a>
-		</li>
 	</ul>
 </div>
 
@@ -89,7 +62,7 @@
 <nav aria-label="breadcrumb">
 	<ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
 		<li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-		<li class="breadcrumb-item text-sm text-dark active" aria-current="page"> Create Teacher</li>
+		<li class="breadcrumb-item text-sm text-dark active" aria-current="page">Create Teacher</li>
 	</ol>
 	<h6 class="font-weight-bolder mb-0">Create Teacher</h6>
 </nav>
@@ -100,7 +73,7 @@
 
 @section('pageContent')
 
-<div style="margin-right: 725px;margin-left: 40px;margin-top: 10px;margin-bottom: 80px;">
+<div style="margin-right: 725px;margin-left: 40px;margin-top: 10px;margin-bottom: 145px;">
 	<div class="row">
 		<div class="col-12">
 			<form action="{{ URL('teacher/store') }}" method="POST">
